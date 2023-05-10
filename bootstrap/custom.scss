@@ -1,0 +1,84 @@
+caption {
+  caption-side: top;
+}
+
+.inventory {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+
+  td,
+  th {
+    font-size: 1.1em;
+    border: 1px solid #ddb575;
+    padding: 3px 7px 2px 7px;
+  }
+  th {
+    text-transform: uppercase;
+    background: rgb(229, 76, 16);
+    background: linear-gradient(to bottom, rgb(229, 76, 16), rgb(173, 54, 8));
+  }
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td {
+  background-color: rgba(229, 76, 16, 0.1);
+}
+
+.fa-star {
+  color: #e94d00;
+  font-size: 0.7em;
+  letter-spacing: 3px;
+}
+
+.container {
+  max-width: 960px;
+  margin: auto;
+  padding: 0 30px;
+}
+
+#content {
+  position: relative;
+  animation-name: content;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes content {
+  0% {
+    left: -1000px;
+  }
+  100% {
+    left: 0;
+  }
+}
+.btn {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border: #fff 1px solid;
+  margin-top: 40px;
+  opacity: 0;
+  animation-name: btn;
+  animation-duration: 3s;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;
+
+  transition-property: transform;
+  transition-duration: 1s;
+}
+
+.btn:hover {
+  transform: rotateY(180deg);
+}
+
+@keyframes btn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+h1 {
+  text-align: center;
+}
