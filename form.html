@@ -1,0 +1,121 @@
+<!doctype html>
+<!-- Evelina Cherny -->
+<head>
+	<title>Validate me</title>
+</head>
+<body>
+At least one piece of data has to come in from every input type.
+	<form action="" method="get" onsubmit="return validateMe();"><br>
+
+		<div>
+			Name:
+			<input type="text" id="name" name="fullname" placeholder="Enter Full Name"><br>
+			<span id="fullname_error"></span><br>
+		</div>
+
+		<div>
+			Year in School:<br>
+				First<input type="radio" name="year" value="First">
+				Second<input type="radio" name="year" value="Second">
+				Third<input type="radio" name="year" value="Third">
+				<span id="year_error"></span><br>
+		</div>
+
+		<div>
+			Sports that you like:<br>
+				Baseball <input type="checkbox" title="hobbies" name="hobbies" value="baseball">  
+				Basketball <input type="checkbox" title="hobbies" name="hobbies" value="basketball">  
+				Football <input type="checkbox" title="hobbies" name="hobbies" value="football">  
+				Hockey <input type="checkbox" title="hobbies" name="hobbies" value="hockey"><br>
+				<span id="hobbies_error"></span><br>
+		</div>
+
+		<div> 
+			Simpsons, Family Guy or South Park<br><select id="show" name="show">
+				<option value="">Choose Below</option>
+				<option value="Family Guy">Family Guy</option>
+				<option value="Simpsons">Simpsons</option>
+				<option value="South Park">South Park</option>
+			</select><br>
+			<span id="show_error"></span><br>
+		</div>
+
+		<div>
+			Comments<br>
+			<textarea cols="50" rows="6" name="comments" id="comments" placeholder="Enter Comments" tabindex="4" value=''></textarea><br>
+			<span id="comments_error"></span><br>
+		</div>
+
+			<input type="submit" name="submit" value="Enter me">
+
+	</form>
+
+	<script>
+
+	function validateMe(){
+
+		for (var i = 0; i < document.forms[0].elements.length; i++) {
+			var errorarea = document.forms[0].elements[i].name + "_error";
+			var msg = document.forms[0].elements[i].name;
+
+			// for textarea, dropdown, and select-one
+			if (document.forms[0].elements[i].value == '') {
+				document.getElementById(errorarea).innerHTML = 'Please enter your ' + msg;
+				document.getElementById(errorarea).style.color = '#ff0000';
+				document.forms[0].elements[i].focus();
+				return false;
+			} 
+			else {
+				document.getElementById(errorarea).innerHTML = '';
+			}
+		
+
+			// for radio button
+			var radioGrp = false;
+			if(document.forms[0].elements[i].type == 'radio') {
+				const numelems = document.getElementsByName(msg).length;
+				let elem = document.getElementsByName(msg)
+
+					for(var j = 0; j < numelems; j++) {
+						if (elem[j].checked == true) {
+							radioGrp = true;
+						}
+					}
+					if(radioGrp == false) {
+						document.getElementById(errorarea).innerHTML = 'Please enter your ' + msg;
+						document.getElementById(errorarea).style.color = '#ff0000';
+						return false;
+					} else {
+						document.getElementById(errorarea).innerHTML = '';
+					}
+			}
+
+			var checkboxGrp = false;
+			if(document.forms[0].elements[i].type == 'checkbox') {
+				let msg = document.forms[0].elements[i].name;
+				const numelems = document.getElementsByName(msg).length;
+				let elem = document.getElementsByName(msg)
+
+					for(var j = 0; j < numelems; j++) {
+						if (elem[j].checked == true) {
+							checkboxGrp = true;
+						}
+					}
+				if(checkboxGrp == false) {
+					document.getElementById(errorarea).innerHTML = 'Please enter your ' + msg;
+					document.getElementById(errorarea).style.color = '#ff0000';
+					document.forms[0].elements[i].focus();
+					return false;
+				} 
+				else {
+					document.getElementById(errorarea).innerHTML = '';
+				}
+			}
+		}
+		return false;
+		} // end of the validateMe() function
+	
+</script>
+
+</body>
+</html>
